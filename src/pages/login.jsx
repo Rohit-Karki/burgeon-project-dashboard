@@ -14,7 +14,7 @@ import { loginUserFn } from "../queriesAndmutations/login/index";
 import { redirect, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [userName, setUserName] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const handleClick = () => setShowPassword(!showPassword);
@@ -80,15 +80,15 @@ const Login = () => {
             alignItems="flex-start"
           >
             <Box w="100%" gap="10px" display="flex" flexDirection="column">
-              <Text fontWeight="bold">Email</Text>
+              <Text fontWeight="bold">Phone Number</Text>
               <Input
-                value={userName}
+                value={phoneNo}
                 onChange={(event) => {
-                  setUserName(event.target.value);
+                  setPhoneNo(event.target.value);
                 }}
                 bg="gray.200"
                 w="100%"
-                placeholder="Email"
+                placeholder="Phone Number"
                 size="md"
               />
             </Box>
