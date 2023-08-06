@@ -31,7 +31,7 @@ function ContentNavbar() {
       >
         <Box>
           <Text fontSize="3xl" fontWeight="bold">
-            Database
+            Attendance
           </Text>
         </Box>
         <ButtonGroup variant="solid" spacing="6">

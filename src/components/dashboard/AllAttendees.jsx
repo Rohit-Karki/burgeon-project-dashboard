@@ -48,7 +48,7 @@ export const StudentsData = [
   },
 ];
 
-function StudentTab() {
+function AllAttendees() {
   // const [selectedId, setSelectedId] = useRecoilState(selectedIdState);
   const bg = "#22c35e";
 
@@ -61,7 +61,7 @@ function StudentTab() {
             <Tr pb="20px">
               <Th>
                 <Text fontSize="1xl" fontWeight="extrabold">
-                  Name
+                  Photo
                 </Text>
               </Th>
               <Th>
@@ -71,24 +71,24 @@ function StudentTab() {
               </Th>
               <Th>
                 <Text fontSize="1xl" fontWeight="extrabold">
-                  Class
+                  Name
                 </Text>
               </Th>
               <Th>
                 <Text fontSize="1xl" fontWeight="extrabold">
-                  Age
+                  In Time
                 </Text>
               </Th>
               <Th>
                 <Text fontSize="1xl" fontWeight="extrabold">
-                  Gender
+                  Last Tapped
                 </Text>
               </Th>
-              <Th>
+              {/* <Th>
                 <Text fontSize="1xl" fontWeight="extrabold">
-                  Email
+                  
                 </Text>
-              </Th>
+              </Th> */}
             </Tr>
           </Thead>
           <Tbody>
@@ -118,7 +118,7 @@ function StudentTab() {
                     </Box>
                   </Td>
                   <Td>{student.id.toString()}</Td>
-                  <Td>{student.class}</Td>
+                  <Td>{student.name}</Td>
                   <Td>{student.age.toString()}</Td>
                   <Td>{student.gender}</Td>
                   <Td>{student.email}</Td>
@@ -139,4 +139,4 @@ function StudentTab() {
   );
 }
 
-export default StudentTab;
+export default AllAttendees;

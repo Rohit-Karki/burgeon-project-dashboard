@@ -1,9 +1,20 @@
-import React from 'react'
+"use client";
+import { Box } from "@chakra-ui/react";
+import React from "react";
+import ContentNavbar from "../ContentNavbar";
+import Search from "../common/Search";
+import AllAttendees from "./AllAttendees";
 
-const MainContent = () => {
+function MainContent() {
   return (
-   <h1>Rohit</h1> 
-  )
+    <>
+      <Box px="20px">
+        <Search />
+        <ContentNavbar />
+        <AllAttendees />
+      </Box>
+    </>
+  );
 }
 
-export default MainContent
+export default MainContent;

@@ -20,20 +20,18 @@ import {
 import { Student, StudentsData } from "./database/Tabs/StudentTab";
 import UserPreview from "./common/UserPreview";
 
-
 function Details() {
   // const [selectedId, setSelectedId] = useRecoilState(selectedIdState);
   // const student = StudentsData.find((student) => student.id === selectedId);
   return (
     <>
       <Box>
-        {/* <UserPreview student={student } /> 
+        {/* <UserPreview student={student} />
         <UserDetail student={student} /> */}
       </Box>
     </>
   );
 }
-
 
 function UserDetail(props) {
   return (
