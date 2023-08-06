@@ -1,5 +1,5 @@
 const dev_mode = {
-  BASE_URL: "https://api-offguard.burgeon.com.np/offguard/",
+  BASE_URL: "https://api-offguard.burgeon.com.np/offguard/api",
   DEFAULT_IMAGE: "https://www.w3schools.com/w3images/avatar2.png",
 };
 

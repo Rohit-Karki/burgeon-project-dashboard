@@ -7,17 +7,17 @@ const axiosInstance = Axios.create({
 });
 
 //add token to all request, for authorization header
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const cfg = { ...config };
-    const token = localStorage.getItem("token");
-    if (token) {
-      cfg.headers.Authorization = `Bearer ${token}`;
-    }
-    return cfg;
-  },
-  (error) => Promise.reject(error)
-);
+// axiosInstance.interceptors.request.use(
+//   (config) => {
+//     const cfg = { ...config };
+//     const token = localStorage.getItem("token");
+//     if (token) {
+//       cfg.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return cfg;
+//   },
+//   (error) => Promise.reject(error)
+// );
 
 axiosInstance.interceptors.response.use(
   (response) => {
