@@ -5,13 +5,13 @@ import ContentNavbar from "../ContentNavbar";
 import Search from "../common/Search";
 import AllAttendees from "./AllAttendees";
 
-function MainContent() {
+function MainContent({ datas }) {
   return (
     <>
       <Box px="20px">
         <Search />
         <ContentNavbar />
-        <AllAttendees />
+        <AllAttendees datas={datas} />
       </Box>
     </>
   );

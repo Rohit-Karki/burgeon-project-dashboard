@@ -11,17 +11,24 @@ import {
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useMutation } from "react-query";
 import { loginUserFn } from "../queriesAndmutations/login/index";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const handleClick = () => setShowPassword(!showPassword);
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: () => {
       // event.preventDefault();
       return loginUserFn({ userName, password });
+    },
+    onSuccess: (response, variables, context) => {
+      localStorage.setItem("data", JSON.stringify(response.data.user));
+      localStorage.setItem("auth-token", response.data.accessToken);
+      navigate("/dashboard");
     },
   });
   const handleLogin = () => {

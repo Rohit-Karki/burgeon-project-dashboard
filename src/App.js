@@ -11,30 +11,24 @@ function App() {
     handleAuth
   );
   const navigate = useNavigate();
-  if (error?.message == "Not Authenticated") {
-    navigate("/login");
-  } else if (isLoading) {
-    return <h1>Loading</h1>;
-  } else if (data) {
-    navigate("/dashboard");
-    return (
-      <>
-        <Box
-          w="20vw"
-          h="100%"
-          position="fixed"
-          top="0"
-          left="0"
-          borderRight="1px"
-          borderRightColor="gray.200"
-        >
-          <Sidebar />
-        </Box>
-        <div id="detail">
+
+  return (
+    <>
+      <Box
+        display="flex"
+        w="100%"
+        justifyContent="start"
+        alignItems="space-between"
+        h="100%"
+        borderRight="1px"
+        borderRightColor="gray.200"
+      >
+        <Sidebar />
+        <Box w="100%" id="detail">
           <Outlet />
-        </div>
-      </>
-    );
-  }
+        </Box>
+      </Box>
+    </>
+  );
 }
 export default App;
