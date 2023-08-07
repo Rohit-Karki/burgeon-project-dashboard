@@ -5,8 +5,7 @@ import TabContainer from "./../components/settings/TabContainer";
 
 function Settings() {
   return (
-    <Flex ml="20vw" flexDirection="column" px="2rem">
-      <Search />
+    <Flex flexDirection="column" px="2rem">
       <Box>
         <Text fontWeight="extrabold" fontSize="2xl">
           Settings

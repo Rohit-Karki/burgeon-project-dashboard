@@ -35,7 +35,7 @@ function ContentNavbar() {
           </Text>
         </Box>
         <ButtonGroup variant="solid" spacing="6">
-          <Button
+          {/* <Button
             size="sm"
             px="15px"
             colorScheme="whatsapp"
@@ -60,7 +60,7 @@ function ContentNavbar() {
             colorScheme="whatsapp"
           >
             Add
-          </Button>
+          </Button> */}
         </ButtonGroup>
       </Box>
     </>

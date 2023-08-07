@@ -1,19 +1,22 @@
 "use client";
 import { Box } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import ContentNavbar from "../ContentNavbar";
 import Search from "../common/Search";
 import AllAttendees from "./AllAttendees";
 
-function MainContent({ datas }) {
+export const SearchValueContext = React.createContext(null);
+
+function MainContent() {
+  const [searchValue, setSearchValue] = useState("");
   return (
-    <>
-      <Box px="20px">
+    <SearchValueContext.Provider value={{ searchValue, setSearchValue }}>
+      <Box w="100%">
         <Search />
         <ContentNavbar />
-        <AllAttendees datas={datas} />
+        <AllAttendees />
       </Box>
-    </>
+    </SearchValueContext.Provider>
   );
 }
 

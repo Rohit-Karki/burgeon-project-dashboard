@@ -74,6 +74,14 @@ const router = createBrowserRouter([
           return personLogs;
         },
       },
+      {
+        path: "settings",
+        element: (
+          <>
+            <Settings />
+          </>
+        ),
+      },
     ],
   },
 ]);

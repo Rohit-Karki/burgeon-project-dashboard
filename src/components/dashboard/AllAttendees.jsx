@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Table,
   Thead,
@@ -12,16 +12,63 @@ import {
   Text,
   Box,
   Avatar,
-  AvatarBadge,
-  AvatarGroup,
   WrapItem,
 } from "@chakra-ui/react";
+import { fetchAllAttendances } from "../../queriesAndmutations/allattendance";
 import { Link } from "react-router-dom";
+import { SearchValueContext } from "./MainContent";
+import { useQuery } from "react-query";
+import {
+  Pagination,
+  PaginationContainer,
+  PaginationNext,
+  PaginationPage,
+  PaginationPageGroup,
+  PaginationPrevious,
+  usePagination,
+} from "@ajna/pagination";
 
-function AllAttendees({ datas }) {
-  console.log(datas);
-  // const [selectedId, setSelectedId] = useRecoilState(selectedIdState);
-  const bg = "#22c35e";
+function AllAttendees() {
+  const { searchValue } = useContext(SearchValueContext);
+
+  const [pagination, setPagination] = useState({});
+  const outerLimit = 2;
+  const innerLimit = 2;
+
+  const { currentPage, setCurrentPage, pagesCount, pages } = usePagination({
+    total: pagination?.totalCount,
+    pagesCount: pagination?.totalPages,
+    limits: {
+      outer: outerLimit,
+      inner: innerLimit,
+    },
+    initialState: {
+      currentPage: 1,
+      pageSize: pagination?.pageSize,
+    },
+  });
+  const {
+    isLoading,
+    isError,
+    data: datas,
+    error,
+  } = useQuery({
+    queryKey: ["all-attendance", currentPage],
+    queryFn: async ({ queryKey }) => {
+      return fetchAllAttendances(queryKey[1]);
+    },
+  });
+  const handlePageChnage = (nextPage) => {
+    setCurrentPage(nextPage);
+  };
+  if (datas) {
+    datas.data = datas.data.filter((data) => {
+      return data?.user.name.toLowerCase().startsWith(searchValue);
+    });
+  }
+  if (isLoading) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <>
@@ -53,14 +100,14 @@ function AllAttendees({ datas }) {
             </Tr>
           </Thead>
           <Tbody>
-            {datas?.map((data) => {
+            {datas?.data?.map((data) => {
               return (
                 <Tr
                   // bg={selectedId == student.id ? bg : ""}
-                  key={data.user._id}
+                  key={data?.user._id}
                 >
                   <Td>
-                    <Link to={`/logs/${data.user._id}`}>
+                    <Link to={`/logs/${data?.user._id}`}>
                       <Box
                         display="flex"
                         justifyContent="start"
@@ -83,15 +130,33 @@ function AllAttendees({ datas }) {
                       </Box>
                     </Link>
                   </Td>
-                  <Td>{data.user.name}</Td>
-                  <Td>{data.firstAttendance}</Td>
-                  <Td>{data.lastAttendance}</Td>
+                  <Td>{data?.user.name}</Td>
+                  <Td>{data?.firstAttendance}</Td>
+                  <Td>{data?.lastAttendance}</Td>
                 </Tr>
               );
             })}
           </Tbody>
         </Table>
       </TableContainer>
+
+      <Box display="flex" justifyContent="center" w="100%">
+        <Pagination
+          pagesCount={pagesCount}
+          currentPage={currentPage}
+          onPageChange={handlePageChnage}
+        >
+          <PaginationContainer>
+            <PaginationPrevious>Previous</PaginationPrevious>
+            <PaginationPageGroup>
+              {pages.map((page) => (
+                <PaginationPage key={`pagination_page_${page}`} page={page} />
+              ))}
+            </PaginationPageGroup>
+            <PaginationNext>Next</PaginationNext>
+          </PaginationContainer>
+        </Pagination>
+      </Box>
     </>
   );
 }

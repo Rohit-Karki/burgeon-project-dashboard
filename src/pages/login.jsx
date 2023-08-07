@@ -11,7 +11,7 @@ import {
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useMutation } from "react-query";
 import { loginUserFn } from "../queriesAndmutations/login/index";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [phoneNo, setPhoneNo] = useState("");
@@ -23,7 +23,7 @@ const Login = () => {
   const mutation = useMutation({
     mutationFn: () => {
       // event.preventDefault();
-      return loginUserFn({ userName, password });
+      return loginUserFn({ phoneNo, password });
     },
     onSuccess: (response, variables, context) => {
       localStorage.setItem("data", JSON.stringify(response.data.user));

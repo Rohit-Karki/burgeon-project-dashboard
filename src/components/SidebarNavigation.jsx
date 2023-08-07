@@ -10,7 +10,7 @@ import {
   AiOutlineDatabase,
 } from "react-icons/ai";
 import { IconType } from "react-icons";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function SidebarNavigation() {
   const params = useParams();
@@ -26,13 +26,21 @@ function SidebarNavigation() {
           name="Dashboard"
           pathname="dashboard"
         />
+        <DisplayInfo
+          isSelected={pathName == "settings"}
+          name="Settings"
+          pathname="settings"
+        />
       </Box>
     </>
   );
 }
 
 function DisplayInfo(props) {
-  const iconsMap = new Map([["Dashboard", AiOutlineDashboard]]);
+  const iconsMap = new Map([
+    ["Dashboard", AiOutlineDashboard],
+    ["Settings", AiOutlineSetting],
+  ]);
   return (
     <>
       <Box m="20px " display="flex" justifyContent="start" alignItems="center">
@@ -44,11 +52,11 @@ function DisplayInfo(props) {
               h="2rem"
               as={iconsMap.get(props.name)}
             />
-            <a href={props.pathname}>
+            <Link to={props.pathname}>
               <Text color="#22c35e" pl="10px">
                 {props.name}
               </Text>
-            </a>
+            </Link>
           </>
         ) : (
           <>
@@ -58,11 +66,11 @@ function DisplayInfo(props) {
               h="2rem"
               as={iconsMap.get(props.name)}
             />
-            <a href={props.pathname}>
+            <Link to={props.pathname}>
               <Text color="gray.500" pl="10px">
                 {props.name}
               </Text>
-            </a>
+            </Link>
           </>
         )}
       </Box>

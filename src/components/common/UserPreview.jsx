@@ -1,13 +1,8 @@
 import { Avatar, Box, Icon, Text, WrapItem } from "@chakra-ui/react";
 import React from "react";
 import { AiFillNotification, AiOutlineDown } from "react-icons/ai";
-import { Student } from "../database/Tabs/StudentTab";
 
-interface UserPreviewProps {
-  student: Student;
-}
-
-const UserPreview = ({ student }: UserPreviewProps) => {
+const UserPreview = ({ data }) => {
   return (
     <Box
       p="20px 60px"
@@ -23,7 +18,7 @@ const UserPreview = ({ student }: UserPreviewProps) => {
           <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
         </WrapItem>
       </Box>
-      <Text fontWeight="bold">{student?.id}</Text>
+      <Text fontWeight="bold">1</Text>
       <Icon color="gray" as={AiOutlineDown} />
     </Box>
   );
