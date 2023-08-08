@@ -5,15 +5,9 @@ import { Box, Spacer, Text } from "@chakra-ui/react";
 
 function Logo() {
   return (
-    <Box
-      margin="0px 0px 82px 0px"
-      height="50px"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Box display="flex">
       {/* <img width="50" src={KULogo} alt="ku logo" /> */}
-      <Text p="8px" fontSize="2xl" fontWeight="bold">
+      <Text fontSize="2xl" fontWeight="bold">
         All Attendance
       </Text>
     </Box>

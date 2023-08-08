@@ -12,11 +12,11 @@ const UserProfile = () => {
             src="https://bit.ly/dan-abramov"
           />
         </Box>
-        <Box display="flex" flexDirection="column" justifyContent="center" >
+        <Box display="flex" flexDirection="column" justifyContent="center">
           <Text fontWeight="extrabold">Dan Abramov</Text>
           <Box display="flex" flexDirection="column" rowGap="0.2rem" pt="1rem">
-          <Text>As89932</Text>
-          <Text>Student</Text>
+            <Text>As89932</Text>
+            <Text>Student</Text>
           </Box>
         </Box>
       </Box>

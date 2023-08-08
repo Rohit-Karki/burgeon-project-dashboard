@@ -1,67 +1,32 @@
 "use client";
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Icon,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
-import {
-  AiOutlineSortAscending,
-  AiTwotoneFilter,
-  AiOutlinePlus,
-} from "react-icons/ai";
-import React, { useState } from "react";
-import AddModal from "./AddModal";
-
+import { Box, Heading } from "@chakra-ui/react";
+import React from "react";
+import { FaAlignLeft } from "react-icons/fa";
 function ContentNavbar() {
-  const [buttonState, setButtonState] = useState("sort");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const btnRef = React.useRef(null);
   return (
     <>
-      <AddModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       <Box
         display="flex"
         justifyContent="space-between"
         alignItems="center"
         py="15px"
       >
-        <Box>
-          <Text fontSize="3xl" fontWeight="bold">
-            Attendance
-          </Text>
+        <Box
+          display="flex"
+          justifyContent="start"
+          alignItems="center"
+          gap="1rem"
+        >
+          <Box
+            height="100%"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <FaAlignLeft size="1.6rem" color="#22c35e" />
+          </Box>
+          <Heading size="lg">Dashboard</Heading>
         </Box>
-        <ButtonGroup variant="solid" spacing="6">
-          {/* <Button
-            size="sm"
-            px="15px"
-            colorScheme="whatsapp"
-            rightIcon={<Icon as={AiOutlineSortAscending} />}
-          >
-            Sort
-          </Button>
-          <Button
-            size="sm"
-            px="15px"
-            colorScheme="gray"
-            rightIcon={<Icon as={AiTwotoneFilter} />}
-          >
-            Filter
-          </Button>
-          <Button
-            size="sm"
-            px="15px"
-            ref={btnRef}
-            onClick={onOpen}
-            leftIcon={<Icon as={AiOutlinePlus} />}
-            colorScheme="whatsapp"
-          >
-            Add
-          </Button> */}
-        </ButtonGroup>
       </Box>
     </>
   );

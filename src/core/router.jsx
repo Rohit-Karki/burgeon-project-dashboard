@@ -63,18 +63,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "logs/:personId",
-        element: (
-          <>
-            <PersonLogs />
-          </>
-        ),
-        loader: async ({ params }) => {
-          const personLogs = await fetchPersonLogs(params.personId, new Date());
-          return personLogs;
-        },
-      },
-      {
         path: "settings",
         element: (
           <>
@@ -83,6 +71,18 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "logs/:personId",
+    element: (
+      <>
+        <PersonLogs />
+      </>
+    ),
+    loader: async ({ params }) => {
+      const personLogs = await fetchPersonLogs(params.personId, new Date());
+      return personLogs;
+    },
   },
 ]);
 

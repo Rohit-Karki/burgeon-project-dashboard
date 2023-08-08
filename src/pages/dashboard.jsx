@@ -8,19 +8,9 @@ import UserPreview from "../components/common/UserPreview";
 export default function Dashboard() {
   return (
     <>
-      <Flex>
-        <Box
-          display="flex"
-          flexDirection="row"
-          w="100%"
-          flex="5"
-          borderRight="1px"
-          borderRightColor="gray"
-        >
-          <MainContent />
-          <UserPreview />
-        </Box>
-      </Flex>
+      <Box display="flex" flexDirection="row" w="100%">
+        <MainContent />
+      </Box>
     </>
   );
 }
