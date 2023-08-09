@@ -1,3 +1,4 @@
+import { unstable_batchedUpdates } from "react-dom";
 import { createBrowserRouter, redirect } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/login";
@@ -7,6 +8,9 @@ import App from "../App";
 import { handleAuth } from "../queriesAndmutations/auth";
 import PersonLogs from "../pages/logs";
 import { fetchPersonLogs } from "../queriesAndmutations/logs";
+import { fetchUserProfile } from "../queriesAndmutations/profile";
+import { useProfileDataStore } from "../zustandStores/userDataStore";
+import { useAuthStore } from "../zustandStores/useAuthStore";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +31,9 @@ const router = createBrowserRouter([
     element: <App />,
     loader: async () => {
       try {
-        const data = await handleAuth();
+        const { userData, authToken } = await handleAuth();
+        useAuthStore.getState().setToken(authToken);
+        useProfileDataStore.getState().updatedata(userData);
         return null;
       } catch (err) {
         if (err) return redirect("/login");
@@ -62,14 +68,6 @@ const router = createBrowserRouter([
           </>
         ),
       },
-      {
-        path: "settings",
-        element: (
-          <>
-            <Settings />
-          </>
-        ),
-      },
     ],
   },
   {
@@ -80,8 +78,11 @@ const router = createBrowserRouter([
       </>
     ),
     loader: async ({ params }) => {
-      const personLogs = await fetchPersonLogs(params.personId, new Date());
-      return personLogs;
+      const promiseValues = await Promise.all([
+        fetchUserProfile(params.personId),
+        fetchPersonLogs(params.personId, new Date()),
+      ]);
+      return promiseValues;
     },
   },
 ]);

@@ -1,9 +1,8 @@
-import { useQuery } from "react-query";
-import { handleAuth } from "./queriesAndmutations/auth/index";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 import Sidebar from "./components/Sidebar/Sidebar";
 import "./App.css";
+import { useAuthStore } from "./zustandStores/useAuthStore";
 
 function App() {
   return (
@@ -20,6 +19,7 @@ function App() {
         <Box
           bg="gray.100"
           marginLeft="280px"
+          minHeight="100vh"
           h="100%"
           w="100%"
           paddingX="2rem"

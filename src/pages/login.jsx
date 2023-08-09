@@ -17,10 +17,11 @@ const Login = () => {
   const [phoneNo, setPhoneNo] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
   const handleClick = () => setShowPassword(!showPassword);
   const navigate = useNavigate();
 
-  const mutation = useMutation({
+  const { isLoading, mutate } = useMutation({
     mutationFn: () => {
       // event.preventDefault();
       return loginUserFn({ phoneNo, password });
@@ -30,24 +31,24 @@ const Login = () => {
       localStorage.setItem("auth-token", response.data.accessToken);
       navigate("/dashboard");
     },
+    onError: (data) => {
+      setError(data.messages[0]);
+    },
   });
   const handleLogin = () => {
-    mutation.mutate();
-    if (mutation?.data) {
-      console.log(mutation.data);
-    }
+    mutate();
   };
 
   return (
     <>
       <Box
-        h="100vh"
-        bgGradient="linear(to-r, #fc466b, #3f5efb)"
+        minH="100vh"
         display="flex"
         justifyContent="center"
         alignItems="center"
       >
         <Box
+          boxShadow="xl"
           bg="white"
           borderRadius="2%"
           gap="20px"
@@ -65,12 +66,13 @@ const Login = () => {
             alignItems="center"
           >
             <Text p="8px" fontSize="2xl" fontWeight="bold">
-              All Attendance
+              OffGuard
             </Text>
           </Box>
           <Text fontSize="2xl" textAlign="center" fontWeight="extrabold">
             Login to your account
           </Text>
+          <Text color="red">{error}</Text>
           <Box
             w="100%"
             gap="20px"
@@ -82,6 +84,7 @@ const Login = () => {
             <Box w="100%" gap="10px" display="flex" flexDirection="column">
               <Text fontWeight="bold">Phone Number</Text>
               <Input
+                invalid={error != ""}
                 value={phoneNo}
                 onChange={(event) => {
                   setPhoneNo(event.target.value);
@@ -96,6 +99,7 @@ const Login = () => {
               <Text fontWeight="bold">Password</Text>
               <InputGroup size="md">
                 <Input
+                  invalid={error != ""}
                   value={password}
                   onChange={(event) => {
                     setPassword(event.target.value);
@@ -120,6 +124,8 @@ const Login = () => {
           </Box>
           <Box w="100%">
             <Button
+              isLoading={isLoading}
+              loadingText="Submitting"
               w="100%"
               colorScheme="purple"
               size="md"

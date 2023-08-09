@@ -11,8 +11,12 @@ import {
   StackDivider,
   Text,
 } from "@chakra-ui/react";
+import { useLoaderData } from "react-router-dom";
 
-const UserPreview = ({ data }) => {
+const UserPreview = () => {
+  const [{ data }, _] = useLoaderData();
+  console.log(data);
+  const { user, org } = data;
   return (
     <Box
       bg="gray.100"
@@ -22,6 +26,7 @@ const UserPreview = ({ data }) => {
       borderBottom="1px"
       borderBottomColor="gray.200"
       minWidth="380px"
+      minHeight="100vh"
     >
       <Box
         display="flex"
@@ -61,12 +66,14 @@ const UserPreview = ({ data }) => {
               flexDirection="column"
             >
               <Box display="flex" gap="0.5rem">
-                <Text fontWeight="bold">Rohit Raj Karki</Text>
-                <Badge fontSize="0.8em" colorScheme="green">
-                  User
-                </Badge>
+                <Text fontWeight="bold">{user.name}</Text>
+                <Box>
+                  <Badge fontSize="0.8em" colorScheme="green">
+                    {user.role}
+                  </Badge>
+                </Box>
               </Box>
-              <Text color="gray.600">rohit@gmail.com</Text>
+              <Text color="gray.600">{user.email}</Text>
             </CardBody>
           </Card>
 
@@ -80,8 +87,8 @@ const UserPreview = ({ data }) => {
               justifyContent="start"
               flexDirection="column"
             >
-              <Text fontWeight="bold">Burgeon Tech</Text>
-              <Text color="gray.600">bgtech@gmail.com</Text>
+              <Text fontWeight="bold">{org.name}</Text>
+              <Text color="gray.600">{org.code}</Text>
             </CardBody>
           </Card>
         </Stack>

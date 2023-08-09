@@ -12,7 +12,8 @@ function SidebarNavigation() {
   const color = "#22c35e";
   return (
     <>
-      <Box h="100%">
+      <Box height=" 400px" max-height="400px" overflowY="scroll">
+        <Text color="gray">Menu</Text>
         <DisplayInfo
           isSelected={pathName == "" || pathName == "dashboard"}
           name="Dashboard"

@@ -3,10 +3,9 @@ import React, { useContext, useState } from "react";
 import { SearchValueContext } from "../dashboard/MainContent";
 import { SearchIcon } from "@chakra-ui/icons";
 
-const Search = () => {
+const Search = ({ isDisabled = false }) => {
   const { searchValue, setSearchValue } = useContext(SearchValueContext);
   const value = useContext(SearchValueContext);
-  console.log(value);
   return (
     <Box pt="12px" pb="15px">
       <InputGroup>
@@ -14,6 +13,7 @@ const Search = () => {
           <SearchIcon color="gray.300" />
         </InputLeftElement>
         <Input
+          isDisabled={isDisabled}
           value={searchValue}
           onChange={(event) => {
             setSearchValue(event.target.value);

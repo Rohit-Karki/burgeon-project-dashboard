@@ -3,6 +3,7 @@ import React from "react";
 
 import SidebarNavigation from "./SidebarNavigation";
 import Logo from "../common/Logo";
+import Profile from "./Profile";
 
 function Sidebar() {
   return (
@@ -19,6 +20,7 @@ function Sidebar() {
       >
         <Logo />
         <SidebarNavigation />
+        <Profile />
       </Box>
     </>
   );

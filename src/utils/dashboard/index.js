@@ -7,7 +7,7 @@ const columns = [
   columnHelper.accessor("image", {
     cell: (props) => {
       return (
-        <Link to={`/logs/${props.row.original.id}`}>
+        <Link to={`/logs/${props.row.original.code}`}>
           <WrapItem>
             <Avatar src={props.getValue} name={props.row.original.name} />
           </WrapItem>
