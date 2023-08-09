@@ -1,7 +1,10 @@
-import { Avatar, Box, Text } from "@chakra-ui/react";
+import { Avatar, Badge, Box, Text } from "@chakra-ui/react";
 import React from "react";
+import { useProfileDataStore } from "../../zustandStores/userDataStore";
 
 const UserProfile = () => {
+  const user = useProfileDataStore.getState().data;
+  console.log(user);
   return (
     <Box w="70%" display="flex" flexDirection="column" pr="2rem" pl="2rem">
       <Box display="flex" columnGap="4rem" pt="1rem">
@@ -13,10 +16,12 @@ const UserProfile = () => {
           />
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center">
-          <Text fontWeight="extrabold">Dan Abramov</Text>
+          <Text fontWeight="extrabold">{user.name}</Text>
           <Box display="flex" flexDirection="column" rowGap="0.2rem" pt="1rem">
-            <Text>As89932</Text>
-            <Text>Student</Text>
+            <Text>{user.userCode}</Text>
+            <Box>
+              <Badge colorScheme="green">{user.role}</Badge>
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -29,7 +34,7 @@ const UserProfile = () => {
         rowGap="2rem"
         justifyContent="space-between"
       >
-        <Box w="100%" display="flex" justifyContent="space-between">
+        {/* <Box w="100%" display="flex" justifyContent="space-between">
           <Box w="33%" display="flex" flexDirection="column" rowGap="0.5rem">
             <Text fontWeight="bold">Gender</Text>
             <Text>Male</Text>
@@ -42,7 +47,7 @@ const UserProfile = () => {
             <Text fontWeight="bold">Date of Birth</Text>
             <Text>2002-12-11</Text>
           </Box>
-        </Box>
+        </Box> */}
         <Box w="100%" display="flex" justifyContent="space-between">
           <Box w="33%" display="flex" flexDirection="column" rowGap="0.5rem">
             <Text fontWeight="bold">Phone</Text>
@@ -50,7 +55,7 @@ const UserProfile = () => {
           </Box>
           <Box w="33%" display="flex" flexDirection="column" rowGap="0.5rem">
             <Text fontWeight="bold">Email</Text>
-            <Text>rohitkarki@gmail.com</Text>
+            <Text>{user.email}</Text>
           </Box>
           <Box w="33%" display="flex" flexDirection="column" rowGap="0.5rem">
             <Text fontWeight="bold">Address</Text>

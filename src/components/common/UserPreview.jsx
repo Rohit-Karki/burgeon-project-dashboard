@@ -15,7 +15,6 @@ import { useLoaderData } from "react-router-dom";
 
 const UserPreview = () => {
   const [{ data }, _] = useLoaderData();
-  console.log(data);
   const { user, org } = data;
   return (
     <Box

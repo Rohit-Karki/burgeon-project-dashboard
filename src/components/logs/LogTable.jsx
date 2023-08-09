@@ -4,6 +4,9 @@ import {
   Badge,
   Box,
   Button,
+  Card,
+  CardBody,
+  CardHeader,
   Heading,
   Table,
   TableCaption,
@@ -38,18 +41,30 @@ const LogTable = () => {
 
   return (
     <>
-      <Box w="100%" display="flex" flexDirection="column">
-        <Heading>Person Logs</Heading>
-        <Box display="flex" justifyContent="center">
-          <SingleDatepicker
-            name="date-input"
-            date={date}
-            onDateChange={setDate}
-            // configs={{
-            //   dateFormat: "yyyy-MM-dd",
-            // }}
-          />
+      <Box w="100%" display="flex" flexDirection="column" paddingRight="30px">
+        <Box w="100%" py="15px">
+          <Heading>Person Logs</Heading>
         </Box>
+
+        <Card
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <CardHeader>
+            <Heading size="md" color="gray">
+              Select Time
+            </Heading>
+          </CardHeader>
+          <CardBody maxW="fit-content">
+            <SingleDatepicker
+              name="date-input"
+              date={date}
+              onDateChange={setDate}
+            />
+          </CardBody>
+        </Card>
 
         <Box w="100%">
           <TableContainer>
