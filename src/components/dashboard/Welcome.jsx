@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Avatar,
   Box,
@@ -7,17 +8,19 @@ import {
   Text,
   WrapItem,
 } from "@chakra-ui/react";
-import React from "react";
+import { useProfileDataStore } from "../../zustandStores/userDataStore";
 
 const Welcome = () => {
+  const data = useProfileDataStore.getState().data;
   return (
     <Card>
       <CardBody p="21px">
         <Box display="flex" gap="1rem" alignItems="center">
           <WrapItem>
             <Avatar
-              name="Dan Abrahmov"
-              src="https://bit.ly/dan-abramov"
+              color="blackAlpha.400"
+              name={data?.name}
+              src={data?.profilePic}
               size="lg"
             />
           </WrapItem>

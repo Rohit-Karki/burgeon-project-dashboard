@@ -39,8 +39,9 @@ const Profile = () => {
               <Box rounded="full" border="6px solid white">
                 <Avatar
                   size="md"
-                  name="Dan Abrahmov"
-                  src="https://bit.ly/dan-abramov"
+                  name={data?.name}
+                  color="black"
+                  src={data?.profilePic}
                 />
               </Box>
             </Box>
